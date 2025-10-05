@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Police Login - Traffic Bondhu</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>body{font-family:'Inter',sans-serif}</style>
+</head>
+<body class="min-h-screen flex items-center justify-center bg-gray-100 p-4">
+  <div class="w-full max-w-md bg-white rounded-lg shadow p-8">
+    <h1 class="text-2xl font-bold text-gray-800 mb-6 text-center">Police Portal Login</h1>
+    <form id="loginForm" class="space-y-5">
+      <div>
+        <label class="block text-sm font-medium text-gray-700" for="police_id">Police ID</label>
+        <input id="police_id" name="police_id" type="text" required class="mt-1 w-full rounded-md border-gray-300 focus:ring-blue-500 focus:border-blue-500 shadow-sm" placeholder="P-123456" />
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700" for="password">Password</label>
+        <input id="password" name="password" type="password" required class="mt-1 w-full rounded-md border-gray-300 focus:ring-blue-500 focus:border-blue-500 shadow-sm" />
+      </div>
+      <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2.5 rounded-md">Login</button>
+    </form>
+    <div id="error" class="hidden mt-4 text-sm text-red-600"></div>
+  </div>
+<script>
+async function postJSON(url,data){
+  const res = await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},credentials:'include',body:JSON.stringify(data)});
+  const json = await res.json();
+  if(!res.ok||!json.success) throw new Error(json.message||'Login failed');
+  return json;
+}
+const form=document.getElementById('loginForm');
+const errorBox=document.getElementById('error');
+form.addEventListener('submit',async (e)=>{
+  e.preventDefault();
+  errorBox.classList.add('hidden');
+  try {
+    await postJSON('/api/login/police',{police_id:form.police_id.value.trim(),password:form.password.value});
+    window.location.href='PoliceDashb.html';
+  } catch(err){
+    errorBox.textContent=err.message;
+    errorBox.classList.remove('hidden');
+  }
+});
+</script>
+</body>
+</html>
