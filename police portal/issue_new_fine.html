@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Issue New Fine - Traffic Bondhu</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .sidebar-link.active { background-color:#3b82f6; color:#fff; }
+  </style>
+</head>
+<body class="bg-gray-100">
+  <div class="flex h-screen">
+    <!-- Sidebar (copied structure for consistency) -->
+    <aside class="w-64 flex-shrink-0 hidden md:flex flex-col bg-gray-800 text-white shadow-lg">
+      <div class="p-6 border-b border-gray-700 flex items-center justify-center bg-gradient-to-r from-teal-600 to-teal-400">
+        <span class="text-2xl font-bold tracking-wide drop-shadow-lg select-none">🚦Traffic বন্ধু</span>
+      </div>
+      <nav class="mt-6">
+        <a href="./PoliceDashb.html" class="sidebar-link flex items-center px-6 py-3 text-sm font-semibold hover:bg-gray-700">Dashboard</a>
+        <a href="./Violation.html" class="sidebar-link flex items-center px-6 py-3 text-sm font-semibold hover:bg-gray-700">Violation & Fine Mgmt</a>
+        <a href="./police_analytics.html" class="sidebar-link flex items-center px-6 py-3 text-sm font-semibold hover:bg-gray-700">Analytics & Reports</a>
+        <a href="./police_maps.html" class="sidebar-link flex items-center px-6 py-3 text-sm font-semibold hover:bg-gray-700">Maps & Alerts</a>
+        <a href="./police_admin.html" class="sidebar-link flex items-center px-6 py-3 text-sm font-semibold hover:bg-gray-700">Administrative Tools</a>
+        <a href="./police_settings.html" class="sidebar-link flex items-center px-6 py-3 text-sm font-semibold hover:bg-gray-700">Settings</a>
+      </nav>
+      <div class="absolute bottom-0 w-64 border-t border-gray-700">
+        <a href="../public/Landing.html" class="sidebar-link flex items-center px-6 py-3 text-sm font-semibold hover:bg-gray-700">Logout</a>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col overflow-hidden">
+      <header class="flex justify-between items-center p-4 bg-white border-b">
+        <div>
+          <h1 class="text-2xl font-bold text-gray-800">Issue New Fine</h1>
+          <p class="text-sm text-gray-500">Record a violation and assign a fine</p>
+        </div>
+        <div class="flex items-center space-x-3">
+          <a href="Violation.html" class="text-sm text-teal-700 hover:underline font-medium">← Back to Violations</a>
+        </div>
+      </header>
+      <main class="flex-1 overflow-y-auto p-6 bg-gray-100">
+        <div class="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow-md">
+          <form id="fineForm" class="space-y-6">
+            <div>
+              <label class="block text-sm font-medium text-gray-700" for="license">Driver License Number</label>
+              <input id="license" name="license" type="text" required placeholder="e.g. BD0123456X78901" class="mt-1 w-full rounded-md border-gray-300 focus:ring-teal-500 focus:border-teal-500 shadow-sm" />
+              <p class="text-xs text-gray-500 mt-1">License must match an existing registered user.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-6">
+              <div>
+                <label class="block text-sm font-medium text-gray-700" for="type">Violation Type</label>
+                <select id="type" name="type" required class="mt-1 w-full rounded-md border-gray-300 focus:ring-teal-500 focus:border-teal-500 shadow-sm">
+                  <option value="">Select type</option>
+                  <option>No Helmet</option>
+                  <option>Speeding</option>
+                  <option>Signal Violation</option>
+                  <option>Wrong Way Driving</option>
+                  <option>Illegal Parking</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700" for="amount">Fine Amount (৳)</label>
+                <input id="amount" name="amount" type="number" min="0" step="50" required placeholder="500" class="mt-1 w-full rounded-md border-gray-300 focus:ring-teal-500 focus:border-teal-500 shadow-sm" />
+              </div>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700" for="notes">Notes (optional)</label>
+              <textarea id="notes" name="notes" rows="3" placeholder="Additional context, location, etc." class="mt-1 w-full rounded-md border-gray-300 focus:ring-teal-500 focus:border-teal-500 shadow-sm"></textarea>
+            </div>
+            <div class="flex items-center justify-end gap-4">
+              <button type="reset" class="text-sm px-4 py-2 rounded-md border border-gray-300 text-gray-600 hover:bg-gray-50">Reset</button>
+              <button type="submit" class="text-sm px-6 py-2 rounded-md bg-blue-600 text-white font-medium hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-blue-500">Submit Fine</button>
+            </div>
+          </form>
+          <div id="result" class="hidden mt-6 p-4 rounded-md bg-teal-50 border border-teal-200 text-sm text-teal-800"></div>
+          <div id="error" class="hidden mt-6 p-4 rounded-md bg-red-50 border border-red-200 text-sm text-red-700"></div>
+        </div>
+      </main>
+    </div>
+  </div>
+<script>
+async function ensureAuth(){
+  try {
+    const res = await fetch('/api/me',{credentials:'include'});
+    if(!res.ok) throw new Error('not-auth');
+    const json = await res.json();
+    if(!json.success || json.user.role !== 'police') throw new Error('not-auth');
+  } catch(e){
+    window.location.href='police_login.html';
+  }
+}
+ensureAuth();
+async function postJSON(url, data){
+  const res = await fetch(url, { method:'POST', credentials:'include', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data)});
+  const json = await res.json();
+  if(!res.ok || !json.success) throw new Error(json.message || 'Request failed');
+  return json;
+}
+const form = document.getElementById('fineForm');
+const resultBox = document.getElementById('result');
+const errorBox = document.getElementById('error');
+form.addEventListener('submit', async (e)=>{
+  e.preventDefault();
+  resultBox.classList.add('hidden');
+  errorBox.classList.add('hidden');
+  const license = form.license.value.trim();
+  const type = form.type.value.trim();
+  const amount = Number(form.amount.value);
+  if(!license || !type || isNaN(amount)) return;
+  try {
+    const resp = await postJSON('/api/police/violations', { license, type, amount });
+    resultBox.textContent = `Fine created: CASE${String(resp.violation.id).padStart(5,'0')} (${resp.violation.type}) for ৳ ${resp.violation.amount}`;
+    resultBox.classList.remove('hidden');
+    form.reset();
+  } catch(err){
+    errorBox.textContent = err.message;
+    errorBox.classList.remove('hidden');
+  }
+});
+</script>
+</body>
+</html>
