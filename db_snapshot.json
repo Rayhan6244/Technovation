@@ -1,0 +1,27 @@
+{
+  "timestamp": "2025-09-19T09:48:47.893Z",
+  "users": [
+    {
+      "id": 1,
+      "full_name": "Faiyaz Alom",
+      "dob": "2002-12-08",
+      "nid": "1245468",
+      "license": "5465454",
+      "email": "alom@gmai.com",
+      "phone": "01622222222",
+      "created_at": "2025-09-19 09:42:42"
+    }
+  ],
+  "police_officers": [
+    {
+      "id": 1,
+      "full_name": "Soumadri Paul",
+      "police_id": "P-123456",
+      "nid": "123456789",
+      "email": "soumadripaul01@gmail.com",
+      "phone": "01611111111",
+      "created_at": "2025-09-19 09:33:32"
+    }
+  ],
+  "violations": []
+}
