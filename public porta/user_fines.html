@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Fines - Traffic Bondhu</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom scrollbar for better UX */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        .sidebar-link.active {
+            background-color: #0d9488;
+            color: white;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <div class="flex h-screen bg-gray-100">
+        <aside class="w-64 flex-shrink-0 hidden md:flex flex-col bg-gray-800 text-white shadow-lg">
+            <div class="p-6 border-b border-gray-700 flex items-center justify-center bg-gradient-to-r from-teal-600 to-teal-400">
+                <span class="text-2xl font-bold text-white tracking-wide drop-shadow-lg select-none">
+                    🚦Traffic বন্ধু
+                </span>
+            </div>
+            <nav class="mt-6">
+                <a href="user_dashboard.html" class="sidebar-link flex items-center px-6 py-3 text-sm font-semibold hover:bg-gray-700">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+                    Dashboard
+                </a>
+                <a href="user_fines.html" class="sidebar-link active flex items-center px-6 py-3 text-sm font-semibold hover:bg-gray-700">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z"></path></svg>
+                    Fines
+                </a>
+                <a href="user_incidents.html" class="sidebar-link flex items-center px-6 py-3 text-sm font-semibold hover:bg-gray-700">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                    Incidents
+                </a>
+                 <a href="user_report.html" class="sidebar-link flex items-center px-6 py-3 text-sm font-semibold hover:bg-gray-700">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                    Report Submission
+                </a>
+                <a href="user_clearance_certificate.html" class="sidebar-link flex items-center px-6 py-3 text-sm font-semibold hover:bg-gray-700">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 012-2h4a2 2 0 012 2v1m-4 0h4"></path></svg>
+                    Clearance Certificate
+                </a>
+                 <a href="user_rules_regulations.html" class="sidebar-link flex items-center px-6 py-3 text-sm font-semibold hover:bg-gray-700">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                    Rules & Regulations
+                </a>
+                <a href="user_maps.html" class="sidebar-link flex items-center px-6 py-3 text-sm font-semibold hover:bg-gray-700">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    Maps
+                </a>
+                <a href="user_helpline.html" class="sidebar-link flex items-center px-6 py-3 text-sm font-semibold hover:bg-gray-700">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                    Helpline Directory
+                </a>
+                <a href="chatbot.html" class="sidebar-link flex items-center px-6 py-3 text-sm font-semibold hover:bg-gray-700">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14s1.5 2 4 2 4-2 4-2"/><circle cx="9" cy="10" r="1" fill="currentColor"/><circle cx="15" cy="10" r="1" fill="currentColor"/></svg>
+                    Chatbot
+                </a>
+            </nav>
+            <div class="absolute bottom-0 w-64 border-t border-gray-700">
+                 <a href="user_settings.html" class="sidebar-link flex items-center px-6 py-3 text-sm font-semibold hover:bg-gray-700">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    Settings
+                </a>
+                <a href="Landing.html" class="sidebar-link flex items-center px-6 py-3 text-sm font-semibold hover:bg-gray-700">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
+                    Logout
+                </a>
+            </div>
+        </aside>
+
+        <div class="flex-1 flex flex-col overflow-hidden">
+            <header class="flex justify-between items-center p-4 bg-white border-b">
+                <div>
+                    <h1 class="text-2xl font-bold text-gray-800">My Fines</h1>
+                </div>
+                <div class="flex items-center space-x-4">
+                     <button class="p-2 rounded-full text-gray-500 bg-gray-100 hover:bg-gray-200">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
+                    </button>
+                    <img class="h-10 w-10 rounded-full object-cover" src="https://placehold.co/100x100/e2e8f0/333?text=JD" alt="User avatar">
+                </div>
+            </header>
+
+            <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 p-6">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="font-bold text-lg">Fine History</h2>
+                        <div>
+                            <select class="border border-gray-300 rounded-md p-2">
+                                <option>Filter by Status</option>
+                                <option>Pending</option>
+                                <option>Paid</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm text-left text-gray-500">
+                            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3">Case ID</th>
+                                    <th scope="col" class="px-6 py-3">Violation</th>
+                                    <th scope="col" class="px-6 py-3">Date</th>
+                                    <th scope="col" class="px-6 py-3">Amount</th>
+                                    <th scope="col" class="px-6 py-3">Status</th>
+                                    <th scope="col" class="px-6 py-3">Action</th>
+                                </tr>
+                            </thead>
+                                                        <tbody id="fines-body">
+                                                                <tr><td colspan="6" class="px-6 py-4 text-center text-gray-500">Loading...</td></tr>
+                                                        </tbody>
+                        </table>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+<script>
+async function fetchJSON(url){
+    const res = await fetch(url, { credentials: 'include' });
+    if(!res.ok) throw new Error('Request failed');
+    return res.json();
+}
+function formatCurrency(v){ return '৳ ' + Number(v||0).toLocaleString('en-IN'); }
+function statusBadge(status){
+    const paid = status === 'paid';
+    const cls = paid ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800';
+    const text = paid ? 'Paid' : 'Pending';
+    return `<span class="${cls} text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full">${text}</span>`;
+}
+function render(rows){
+    const body = document.getElementById('fines-body');
+    if(!rows.length){
+        body.innerHTML = '<tr><td colspan="6" class="px-6 py-4 text-center text-gray-500">No fines yet.</td></tr>';
+        return;
+    }
+    body.innerHTML = rows.map((r,i)=>{
+        const caseId = 'CASE' + String(r.id).padStart(5,'0');
+        const date = r.created_at?.split(' ')[0] || r.created_at;
+        const action = r.status === 'unpaid' ? `<button class="pay-btn font-medium text-white bg-teal-600 hover:bg-teal-700 px-4 py-2 rounded-md" data-id="${r.id}">Pay Now</button>` : `<a href="#" class="font-medium text-teal-600 hover:underline">View Receipt</a>`;
+        const rowCls = i % 2 === 0 ? 'bg-white' : 'bg-gray-50';
+        return `<tr class="${rowCls} border-b">
+            <td class="px-6 py-4 font-medium text-gray-900">${caseId}</td>
+            <td class="px-6 py-4">${r.type||'-'}</td>
+            <td class="px-6 py-4">${date||'-'}</td>
+            <td class="px-6 py-4">${formatCurrency(r.amount)}</td>
+            <td class="px-6 py-4">${statusBadge(r.status)}</td>
+            <td class="px-6 py-4">${action}</td>
+        </tr>`; }).join('');
+}
+async function load(){
+    try {
+        const me = await fetchJSON('/api/me');
+        // Optionally personalize header later with me.user.full_name
+        const finesResp = await fetchJSON('/api/user/fines');
+        render(finesResp.fines);
+        attachPayHandlers();
+    } catch(e){
+        console.error(e);
+        document.getElementById('fines-body').innerHTML = '<tr><td colspan="6" class="px-6 py-4 text-center text-red-500">Failed to load fines.</td></tr>';
+    }
+}
+load();
+
+async function payFine(id, btn){
+    btn.disabled = true;
+    btn.textContent = 'Processing...';
+    try {
+        const res = await fetch('/api/user/fines/' + id + '/pay', { method:'POST', credentials:'include' });
+        const json = await res.json();
+        if(!json.success){ throw new Error(json.message || 'Payment failed'); }
+        // Refresh list
+        const finesResp = await fetchJSON('/api/user/fines');
+        render(finesResp.fines);
+        attachPayHandlers();
+    } catch(err){
+        console.error(err);
+        btn.disabled = false;
+        btn.textContent = 'Pay Now';
+        alert('Payment failed: ' + err.message);
+    }
+}
+
+function attachPayHandlers(){
+    document.querySelectorAll('.pay-btn').forEach(btn => {
+        btn.addEventListener('click', () => payFine(btn.getAttribute('data-id'), btn));
+    });
+}
+</script>
+</body>
+</html>
